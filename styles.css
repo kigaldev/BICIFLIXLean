@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #E50914;  /* Rojo Netflix */
+    --secondary-color: #141414; /* Negro oscuro Netflix */
+    --background-color: #121212;
+    --text-color: #FFFFFF;
+    --accent-color: #54B9C0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(20, 20, 20, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn, .signup-btn, .cta-primary, .cta-secondary {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+.signup-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                url('hero-background.jpg') no-repeat center center;
+    background-size: cover;
+    color: var(--text-color);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cta-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.cta-secondary {
+    background-color: rgba(255,255,255,0.2);
+    color: var(--text-color);
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 5%;
+    background-color: var(--secondary-color);
+}
+
+.feature {
+    text-align: center;
+    max-width: 300px;
+}
+
+.categories {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.category {
+    background-color: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.category:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: var(--secondary-color);
+    padding: 3rem 5%;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+}
+
+@media screen and (max-width: 768px) {
+    .nav-menu, .features, .category-grid, .footer-content {
+        flex-direction: column;
+    }
+}
