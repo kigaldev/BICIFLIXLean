@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasación de Bicicletas - Biciflix</title>
+    <meta name="description" content="Herramienta de tasación de bicicletas de segunda mano">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <nav class="main-navigation">
+                <div class="logo">
+                    <img src="logo-biciflix.png" alt="Biciflix Logo" width="150" height="50">
+                </div>
+
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#tasacion">Tasación</a></li>
+                        <li><a href="#comparador">Comparador</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                    </ul>
+                </div>
+
+                <div class="user-actions">
+                    <button class="login-btn">Iniciar Sesión</button>
+                    <button class="signup-btn">Registrarse</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tasacion-page">
+        <section class="tasacion-hero">
+            <h1>Tasación de Bicicletas de Segunda Mano</h1>
+            <p>Descubre el valor real de tu próxima bicicleta</p>
+        </section>
+
+        <section class="tasacion-form-container">
+            <form id="tasacion-compra-form" class="tasacion-form">
+                <div class="form-section" id="marca-modelo-step">
+                    <h2>Información de la Bicicleta</h2>
+                    <div class="form-group">
+                        <label for="marca">Marca</label>
+                        <select id="marca" name="marca" required>
+                            <option value="">Selecciona una marca</option>
+                            <option value="specialized">Specialized</option>
+                            <option value="trek">Trek</option>
+                            <option value="giant">Giant</option>
+                            <option value="cannondale">Cannondale</option>
+                            <option value="orbea">Orbea</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" id="modelo" name="modelo" required placeholder="Ej: Rockhopper, Domane, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Año</label>
+                        <select id="year" name="year" required>
+                            <option value="">Selecciona año</option>
+                            <!-- Años dinámicos generados por JS -->
+                        </select>
+                    </div>
+                    <button type="button" class="next-step">Siguiente</button>
+                </div>
+
+                <div class="form-section" id="caracteristicas-step" style="display:none;">
+                    <h2>Características Técnicas</h2>
+                    <div class="form-group">
+                        <label>Sistema de Transmisión</label>
+                        <div class="radio-group">
+                            <input type="radio" id="mecanico" name="transmision" value="mecanico" required>
+                            <label for="mecanico">Mecánico</label>
+                            <input type="radio" id="electronico" name="transmision" value="electronico">
+                            <label for="electronico">Electrónico</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="talla">Talla</label>
+                        <select id="talla" name="talla" required>
+                            <option value="">Selecciona talla</option>
+                            <option value="xs">XS</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Intensidad de Uso</label>
+                        <div class="radio-group">
+                            <input type="radio" id="moderado" name="uso" value="moderado" required>
+                            <label for="moderado">Moderado</label>
+                            <input type="radio" id="regular" name="uso" value="regular">
+                            <label for="regular">Regular</label>
+                            <input type="radio" id="intensivo" name="uso" value="intensivo">
+                            <label for="intensivo">Intensivo</label>
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="prev-step">Anterior</button>
+                        <button type="button" class="next-step">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="form-section" id="contacto-step" style="display:none;">
+                    <h2>Recibe tu Tasación</h2>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Tu email para recibir el informe">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (Opcional)</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Tu número de contacto">
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="prev-step">Anterior</button>
+                        <button type="submit" class="submit-tasacion">Obtener Tasación</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <!-- Footer igual al de index.html -->
+    </footer>
+
+    <script src="menu-toggle.js"></script>
+    <script src="nav_tasacion_compra.js"></script>
+</body>
+</html>
