@@ -4,84 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biciflix - El Netflix de las Bicicletas</title>
+    <meta name="description" content="Plataforma para descubrir, comparar y encontrar tu bicicleta perfecta">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="logo-biciflix.png" alt="Biciflix Logo">
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#recomendaciones">Recomendaciones</a></li>
-                <li><a href="#comparador">Comparador</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-            </ul>
-            <div class="user-actions">
-                <button class="login-btn">Iniciar Sesión</button>
-                <button class="signup-btn">Registrarse</button>
-            </div>
-        </nav>
+    <header class="site-header">
+        <div class="header-container">
+            <nav class="main-navigation">
+                <div class="logo">
+                    <img src="logo-biciflix.png" alt="Biciflix Logo" width="150" height="50">
+                </div>
+
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="#recomendaciones">Recomendaciones</a></li>
+                        <li><a href="#comparador">Comparador</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                    </ul>
+                </div>
+
+                <div class="user-actions">
+                    <button class="login-btn">Iniciar Sesión</button>
+                    <button class="signup-btn">Registrarse</button>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="hero">
-            <h1>Descubre tu Bicicleta Perfecta</h1>
-            <p>El Netflix de las bicicletas: compara, explora y encuentra tu próxima aventura sobre ruedas</p>
-            <div class="hero-cta">
-                <button class="cta-primary">Comenzar</button>
-                <button class="cta-secondary">Ver Catálogo</button>
+            <div class="hero-content">
+                <h1>Descubre tu Bicicleta Perfecta</h1>
+                <p>El Netflix de las bicicletas: compara, explora y encuentra tu próxima aventura sobre ruedas</p>
+                <div class="hero-cta">
+                    <button class="cta-primary">Comenzar</button>
+                    <button class="cta-secondary">Ver Catálogo</button>
+                </div>
             </div>
         </section>
 
         <section class="features">
-            <div class="feature">
-                <h3>Catálogo Completo</h3>
-                <p>Miles de bicicletas de todos los estilos y presupuestos</p>
-            </div>
-            <div class="feature">
-                <h3>Recomendaciones Personalizadas</h3>
-                <p>Encuentra tu bicicleta ideal con nuestra IA</p>
-            </div>
-            <div class="feature">
-                <h3>Comparador Avanzado</h3>
-                <p>Compara modelos lado a lado con métricas detalladas</p>
+            <div class="features-container">
+                <article class="feature">
+                    <h2>Catálogo Completo</h2>
+                    <p>Miles de bicicletas de todos los estilos y presupuestos</p>
+                </article>
+                <article class="feature">
+                    <h2>Recomendaciones Personalizadas</h2>
+                    <p>Encuentra tu bicicleta ideal con nuestra IA</p>
+                </article>
+                <article class="feature">
+                    <h2>Comparador Avanzado</h2>
+                    <p>Compara modelos lado a lado con métricas detalladas</p>
+                </article>
             </div>
         </section>
 
         <section class="categories">
             <h2>Explora Categorías</h2>
             <div class="category-grid">
-                <div class="category">Montaña</div>
-                <div class="category">Carretera</div>
-                <div class="category">Urbana</div>
-                <div class="category">Eléctrica</div>
+                <article class="category">Montaña</article>
+                <article class="category">Carretera</article>
+                <article class="category">Urbana</article>
+                <article class="category">Eléctrica</article>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
+    <footer class="site-footer">
+        <div class="footer-container">
             <div class="footer-logo">
-                <img src="logo-biciflix.png" alt="Biciflix Logo">
+                <img src="logo-biciflix.png" alt="Biciflix Logo" width="150" height="50">
             </div>
-            <div class="footer-links">
+            <nav class="footer-links">
                 <ul>
                     <li><a href="#">Sobre Nosotros</a></li>
                     <li><a href="#">Contacto</a></li>
                     <li><a href="#">Términos de Servicio</a></li>
                     <li><a href="#">Política de Privacidad</a></li>
                 </ul>
-            </div>
+            </nav>
             <div class="social-links">
                 <a href="#" class="social-icon">Instagram</a>
                 <a href="#" class="social-icon">Facebook</a>
                 <a href="#" class="social-icon">Twitter</a>
             </div>
-        </div>
-        <div class="copyright">
-            © 2025 Biciflix. Todos los derechos reservados.
+            <p class="copyright">© 2025 Biciflix. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
