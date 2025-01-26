@@ -1,16 +1,15 @@
 def calcular_precio(data):
-    # Implementación inicial del algoritmo de precios según el documento
-    precio_base = 3000  # Ejemplo de precio base
+    precio_base = 3000
     
-    # Depreciación anual
+    # Ajuste por antigüedad más preciso
     antiguedad = 2024 - data.get('anio', 2024)
-    precio_depreciado = precio_base * (0.8 ** antiguedad)
+    depreciacion = max(0.2 * antiguedad, 0.8)
+    precio_depreciado = precio_base * depreciacion
     
-    # Ajustes por transmisión
+    # Ajustes por transmisión y talla
     if data.get('transmision') == 'Electrónica':
         precio_depreciado *= 1.1
     
-    # Ajustes por talla
     if data.get('talla') in ['XS', 'S', 'XL']:
         precio_depreciado *= 0.97
     
