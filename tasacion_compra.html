@@ -47,19 +47,20 @@
         </section>
 
         <section class="container mx-auto px-4 max-w-2xl">
-            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6">
-                <div class="form-section" id="marca-modelo-step">
+            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6 text-gray-800">                <div class="form-section" id="marca-modelo-step">
                     <h2 class="text-2xl font-bold mb-6">Información de la Bicicleta</h2>
                     <div class="space-y-4">
                         <div class="form-group">
                             <label for="marca" class="block text-sm font-medium mb-2">Marca</label>
-                            <select id="marca" name="marca" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
-                                <option value="">Selecciona una marca</option>
-                                <option value="specialized">Specialized</option>
-                                <option value="trek">Trek</option>
-                                <option value="giant">Giant</option>
-                                <option value="cannondale">Cannondale</option>
-                                <option value="orbea">Orbea</option>
+                            <input list="marcas" id="marca" name="marca" required 
+                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <datalist id="marcas">
+                                <option value="Specialized">
+                                <option value="Trek">
+                                <option value="Giant">
+                                <option value="Cannondale">
+                                <option value="Orbea">
+                            </datalist>
                             </select>
                         </div>
                         <div class="form-group">
@@ -193,5 +194,35 @@
 
     <script src="menu-toggle.js"></script>
     <script src="nav_tasacion_compra.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('tasacion-compra-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                fetch('http://localhost:5001/tasacion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // Aquí manejaremos la respuesta
+                    console.log(result);
+                    alert(`Tasación completada. Precio estimado: $${result.precio_estimado}`);
+                    // Aquí podrías redirigir a una página de resultados o mostrar los detalles en la misma página
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
+                    console.log('Respuesta del servidor:', error.response);});
+            });
+        });
+        </script>
 </body>
 </html>

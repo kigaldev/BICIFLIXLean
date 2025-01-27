@@ -4,17 +4,14 @@ from flask_cors import cross_origin
 from app import app, db
 from app.models import Tasacion
 from app.utils.pricing_algorithm import calcular_precio
-from app.utils.pdf_generator import generar_informe_tasacion  # Importar la función para generar PDFs
-from app.utils.email_sender import enviar_informe  # Importar la función para enviar correos
+from app.utils.pdf_generator import generar_informe_tasacion
+from app.utils.email_sender import enviar_informe
 
-@app.route('/tasacion', methods=['POST', 'OPTIONS'])
-@cross_origin(supports_credentials=True)
+@app.route('/tasacion', methods=['POST'])
+@cross_origin()
 def crear_tasacion():
-    if request.method == 'OPTIONS':
-        return jsonify({}), 200
-    
     data = request.get_json()
-
+    
     # Validaciones
     if not data:
         abort(400, description="No se enviaron datos en la solicitud.")
@@ -72,7 +69,7 @@ def crear_tasacion():
 
     # Responder con el ID, precio estimado e informe PDF
     return jsonify({
-        "id": nueva_tasacion.id, 
+        "id": nueva_tasacion.id,
         "precio_estimado": precio,
         "informe_pdf": pdf_path
     }), 201
