@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables y estilos base originales */
+:root {
+    --primary-color: #E50914;
+    --secondary-color: #141414;
+    --background-color: #121212;
+    --text-color: #FFFFFF;
+    --accent-color: #54B9C0;
+    --gutter: 5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Componentes personalizados */
+@layer components {
+    .header-container {
+        width: 100%;
+        padding: 1rem var(--gutter);
+    }
+
+    .main-navigation {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+
+    .nav-menu ul {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+
+    .user-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+
+    .login-btn, .signup-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .login-btn {
+        background-color: transparent;
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+    }
+
+    .signup-btn {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+    .hero-background {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                    url('hero-background.jpg') no-repeat center center;
+        background-size: cover;
+    }
+}
+
+/* Media Queries y Estilos Responsivos */
+@media screen and (min-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .main-navigation {
+        grid-template-columns: auto 1fr auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
