@@ -8,97 +8,103 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-background text-text min-h-screen">
     <header class="site-header">
-        <div class="header-container">
-            <nav class="main-navigation">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
                 <div class="logo">
-                    <img src="logo-biciflix.png" alt="Biciflix Logo" width="150" height="50">
+                    <img src="logo-biciflix.png" alt="Biciflix Logo" class="h-12">
                 </div>
 
-                <div class="menu-toggle" id="mobile-menu">
+                <div class="menu-toggle md:hidden" id="mobile-menu">
                     <script src="menu-toggle.js"></script>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span class="block h-0.5 w-6 bg-text mb-1"></span>
+                    <span class="block h-0.5 w-6 bg-text mb-1"></span>
+                    <span class="block h-0.5 w-6 bg-text"></span>
                 </div>
 
-                <div class="nav-menu">
-                    <ul>
-                        <li><a href="#tasacion">Tasación Bicicletas</a></li>
-                        <li><a href="#recomendaciones">Recomendaciones</a></li>
-                        <li><a href="#comparador">Comparador</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
+                <div class="nav-menu hidden md:block">
+                    <ul class="flex space-x-4">
+                        <li><a href="#tasacion" class="text-text hover:text-primary">Tasación Bicicletas</a></li>
+                        <li><a href="#recomendaciones" class="text-text hover:text-primary">Recomendaciones</a></li>
+                        <li><a href="#comparador" class="text-text hover:text-primary">Comparador</a></li>
+                        <li><a href="#servicios" class="text-text hover:text-primary">Servicios</a></li>
                     </ul>
                 </div>
 
-                <div class="user-actions">
-                    <button class="login-btn">Iniciar Sesión</button>
-                    <button class="signup-btn">Registrarse</button>
+                <div class="user-actions flex space-x-4">
+                    <button class="btn-secondary">Iniciar Sesión</button>
+                    <button class="btn-primary">Registrarse</button>
                 </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Descubre tu Bicicleta Perfecta</h1>
-                <p>El Netflix de las bicicletas: compara, explora y encuentra tu próxima aventura sobre ruedas</p>
-                <div class="hero-cta">
-                    <button class="cta-primary">Comenzar</button>
-                    <button class="cta-secondary">Ver Catálogo</button>
+        <section class="hero bg-secondary">
+            <div class="container mx-auto px-4 py-16">
+                <div class="hero-content text-center">
+                    <h1 class="text-4xl font-bold mb-4">Descubre tu Bicicleta Perfecta</h1>
+                    <p class="text-xl mb-8">El Netflix de las bicicletas: compara, explora y encuentra tu próxima aventura sobre ruedas</p>
+                    <div class="hero-cta flex justify-center space-x-4">
+                        <button class="btn-primary">Comenzar</button>
+                        <button class="btn-secondary">Ver Catálogo</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="features">
-            <div class="features-container">
-                <article class="feature">
-                    <h2>Catálogo Completo</h2>
-                    <p>Miles de bicicletas de todos los estilos y presupuestos</p>
+        <section class="features bg-background py-16">
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="feature text-center p-6">
+                    <h2 class="text-2xl font-bold mb-4">Catálogo Completo</h2>
+                    <p class="text-text">Miles de bicicletas de todos los estilos y presupuestos</p>
                 </article>
-                <article class="feature">
-                    <h2>Recomendaciones Personalizadas</h2>
-                    <p>Encuentra tu bicicleta ideal con nuestra IA</p>
+                <article class="feature text-center p-6">
+                    <h2 class="text-2xl font-bold mb-4">Recomendaciones Personalizadas</h2>
+                    <p class="text-text">Encuentra tu bicicleta ideal con nuestra IA</p>
                 </article>
-                <article class="feature">
-                    <h2>Comparador Avanzado</h2>
-                    <p>Compara modelos lado a lado con métricas detalladas</p>
+                <article class="feature text-center p-6">
+                    <h2 class="text-2xl font-bold mb-4">Comparador Avanzado</h2>
+                    <p class="text-text">Compara modelos lado a lado con métricas detalladas</p>
                 </article>
             </div>
         </section>
 
-        <section class="categories">
-            <h2>Explora Categorías</h2>
-            <div class="category-grid">
-                <article class="category">Montaña</article>
-                <article class="category">Carretera</article>
-                <article class="category">Urbana</article>
-                <article class="category">Eléctrica</article>
+        <section class="categories py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">Explora Categorías</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <article class="category p-6 bg-secondary rounded-lg text-center">Montaña</article>
+                    <article class="category p-6 bg-secondary rounded-lg text-center">Carretera</article>
+                    <article class="category p-6 bg-secondary rounded-lg text-center">Urbana</article>
+                    <article class="category p-6 bg-secondary rounded-lg text-center">Eléctrica</article>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="logo-biciflix.png" alt="Biciflix Logo" width="150" height="50">
+    <footer class="bg-secondary py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="footer-logo">
+                    <img src="logo-biciflix.png" alt="Biciflix Logo" class="h-12">
+                </div>
+                <nav class="footer-links">
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-text hover:text-primary">Sobre Nosotros</a></li>
+                        <li><a href="#" class="text-text hover:text-primary">Contacto</a></li>
+                        <li><a href="#" class="text-text hover:text-primary">Términos de Servicio</a></li>
+                        <li><a href="#" class="text-text hover:text-primary">Política de Privacidad</a></li>
+                    </ul>
+                </nav>
+                <div class="social-links flex space-x-4">
+                    <a href="#" class="social-icon text-text hover:text-primary">Instagram</a>
+                    <a href="#" class="social-icon text-text hover:text-primary">Facebook</a>
+                    <a href="#" class="social-icon text-text hover:text-primary">Twitter</a>
+                </div>
+                <p class="copyright text-sm text-text">© 2025 Biciflix. Todos los derechos reservados.</p>
             </div>
-            <nav class="footer-links">
-                <ul>
-                    <li><a href="#">Sobre Nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Términos de Servicio</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                </ul>
-            </nav>
-            <div class="social-links">
-                <a href="#" class="social-icon">Instagram</a>
-                <a href="#" class="social-icon">Facebook</a>
-                <a href="#" class="social-icon">Twitter</a>
-            </div>
-            <p class="copyright">© 2025 Biciflix. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
