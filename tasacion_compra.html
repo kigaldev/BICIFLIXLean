@@ -47,31 +47,28 @@
         </section>
 
         <section class="container mx-auto px-4 max-w-2xl">
-            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6 text-gray-800">        <div class="form-section" id="marca-modelo-step">
+            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6 text-gray-800">
+                <div class="form-section" id="marca-modelo-step">
                     <h2 class="text-2xl font-bold mb-6">Información de la Bicicleta</h2>
                     <div class="space-y-4">
                         <div class="form-group">
                             <label for="marca" class="block text-sm font-medium mb-2">Marca</label>
-                            <input list="marcas" id="marca" name="marca" required 
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
-                            <datalist id="marcas">
-                                <option value="Specialized">
-                                <option value="Trek">
-                                <option value="Giant">
-                                <option value="Cannondale">
-                                <option value="Orbea">
-                            </datalist>
+                            <input type="text" id="marca" name="marca" required 
+                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="Ingrese la marca de la bicicleta">
                         </div>
                         <div class="form-group">
                             <label for="modelo" class="block text-sm font-medium mb-2">Modelo</label>
-                            <input type="text" id="modelo" name="modelo" required placeholder="Ej: Rockhopper, Domane, etc." 
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <input type="text" id="modelo" name="modelo" required 
+                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="Ej: Rockhopper, Domane, etc.">
                         </div>
                         <div class="form-group">
                             <label for="year" class="block text-sm font-medium mb-2">Año</label>
-                            <select id="year" name="year" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <select id="year" name="year" required 
+                                    class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
                                 <option value="">Selecciona año</option>
-                                <!-- Años dinámicos generados por JS -->
+                                <!-- Opciones de año se generarán con JavaScript -->
                             </select>
                         </div>
                         <button type="button" class="next-step w-full bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition-colors">
@@ -100,7 +97,8 @@
                         </div>
                         <div class="form-group">
                             <label for="talla" class="block text-sm font-medium mb-2">Talla</label>
-                            <select id="talla" name="talla" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <select id="talla" name="talla" required 
+                                    class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
                                 <option value="">Selecciona talla</option>
                                 <option value="xs">XS</option>
                                 <option value="s">S</option>
@@ -145,8 +143,9 @@
                     <div class="space-y-4">
                         <div class="form-group">
                             <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="Tu email para recibir el informe"
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
+                                   placeholder="Tu email para recibir el informe">
                         </div>
                         <div class="form-group">
                             <label for="telefono" class="block text-sm font-medium mb-2">Teléfono (Opcional)</label>
@@ -164,6 +163,9 @@
                     </div>
                 </div>
             </form>
+            <div id="loading-spinner" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+                <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+            </div>
         </section>
     </main>
 
@@ -196,9 +198,119 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('tasacion-compra-form');
+            const fields = form.querySelectorAll('input, select');
+
+            // Añadir validación a los campos
+            fields.forEach(field => {
+                field.addEventListener('blur', validateField);
+                field.addEventListener('input', validateField);
+            });
+
+            function validateField(e) {
+                const field = e.target;
+                const fieldName = field.getAttribute('name');
+                let errorMessage = '';
+                
+                switch(fieldName) {
+                    case 'marca':
+                        if (field.value.trim() === '') {
+                            errorMessage = 'Por favor, seleccione una marca.';
+                        }
+                        break;
+                    case 'modelo':
+                        if (field.value.trim() === '') {
+                            errorMessage = 'Por favor, ingrese el modelo.';
+                        }
+                        break;
+                    case 'year':
+                        const year = parseInt(field.value);
+                        if (isNaN(year) || year < 1900 || year > new Date().getFullYear()) {
+                            errorMessage = 'Por favor, ingrese un año válido.';
+                        }
+                        break;
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value)) {
+                            errorMessage = 'Por favor, ingrese un email válido.';
+                        }
+                        break;
+                }
+                setFieldError(field, errorMessage);
+            }
+
+            function setFieldError(field, message) {
+                const errorElement = field.nextElementSibling;
+                if (errorElement && errorElement.classList.contains('error-message')) {
+                    errorElement.textContent = message;
+                } else if (message) {
+                    const newError = document.createElement('p');
+                    newError.classList.add('error-message', 'text-red-500', 'text-sm', 'mt-1');
+                    newError.textContent = message;
+                    field.parentNode.insertBefore(newError, field.nextSibling);
+                }
+                field.classList.toggle('border-red-500', message !== '');
+            }
+
+            function validateForm(e) {
+                let isValid = true;
+                fields.forEach(field => {
+                    validateField({target: field});
+                    if (field.nextElementSibling && field.nextElementSibling.classList.contains('error-message')) {
+                        isValid = false;
+                    }
+                });
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            }
+
+            function showSpinner() {
+                 document.getElementById('loading-spinner').classList.remove('hidden');
+            }
+
+            function hideSpinner() {
+                 document.getElementById('loading-spinner').classList.add('hidden');
+            }
+
+            form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm()) {
+        showSpinner();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        fetch('http://localhost:5001/tasacion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+    hideSpinner();
+    localStorage.setItem('tasacionResult', JSON.stringify(result));
+    window.location.href = 'resultado_tasacion.html';
+})
+        .catch(error => {
+            hideSpinner();
+            console.error('Error:', error);
+            alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
+        });
+    }
+});            
+
+            // Agregar validación antes del envío del formulario
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                // Validar el formulario antes de enviar
+                validateForm(e);
+
+                // Si hay errores de validación, no continuar con el envío
+                const hasErrors = form.querySelectorAll('.error-message').length > 0;
+                if (hasErrors) return;
+
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
                 
@@ -211,17 +323,25 @@
                 })
                 .then(response => response.json())
                 .then(result => {
-                    // Aquí manejaremos la respuesta
                     console.log(result);
                     alert(`Tasación completada. Precio estimado: $${result.precio_estimado}`);
-                    // Aquí podrías redirigir a una página de resultados o mostrar los detalles en la misma página
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
-                    console.log('Respuesta del servidor:', error.response);});
+                    console.log('Respuesta del servidor:', error.response);
+                });
+
+                // Generar opciones de año dinamicamente
+                const yearSelect = document.getElementById('year');
+                const currentYear = new Date().getFullYear();
+                for (let year = currentYear; year >= 1900; year--) {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearSelect.appendChild(option);
+                }
             });
-        });
         </script>
-</body>
-</html>
+    </body>
+    </html>

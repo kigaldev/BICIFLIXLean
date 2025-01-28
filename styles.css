@@ -900,6 +900,11 @@ body {
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
 }
 
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+}
+
 .text-primary {
   --tw-text-opacity: 1;
   color: rgb(229 9 20 / var(--tw-text-opacity, 1));
@@ -927,6 +932,15 @@ body {
   transition-duration: 150ms;
 }
 
+.error-message {
+  color:#ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.input.border-red-500, select.border-red-500 {
+  border-color: #ef4444;
+}
 /* Variables y estilos base originales */
 
 :root {
@@ -1019,48 +1033,4 @@ body {
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-}
-
-/* Estilos para el contenedor del formulario */
-.container.mx-auto.px-4.max-w-2xl {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos para el texto del formulario */
-.container.mx-auto.px-4.max-w-2xl,
-.container.mx-auto.px-4.max-w-2xl input,
-.container.mx-auto.px-4.max-w-2xl select,
-.container.mx-auto.px-4.max-w-2xl label {
-  color: #333333;
-}
-
-/* Estilos para el select de marcas */
-#marca {
-  appearance: none;
-  background-color: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-}
-
-#marca:focus {
-  outline: none;
-  ring: 2px;
-  ring-color: #3b82f6;
-  border-color: #3b82f6;
-}
-
-/* Estilos para la lista de opciones del datalist */
-#marcas option {
-  background-color: #ffffff;
-  color: #333333;
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Tasación - Biciflix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-background text-text min-h-screen">
+    <header class="bg-primary py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-bold">Biciflix</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white shadow-lg rounded-lg p-6 max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4">Resultado de la Tasación</h2>
+            <div id="tasacion-result" class="mb-6">
+                <!-- Los resultados se insertarán aquí dinámicamente -->
+            </div>
+            <a href="tasacion_compra.html" class="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark">Nueva Tasación</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultData = JSON.parse(localStorage.getItem('tasacionResult'));
+            const resultContainer = document.getElementById('tasacion-result');
+
+            if (resultData) {
+                resultContainer.innerHTML = `
+                    <p class="mb-2"><strong>Marca:</strong> ${resultData.marca}</p>
+                    <p class="mb-2"><strong>Modelo:</strong> ${resultData.modelo}</p>
+                    <p class="mb-2"><strong>Año:</strong> ${resultData.anio}</p>
+                    <p class="text-2xl font-bold mb-4"><strong>Precio Estimado:</strong> $${resultData.precio_estimado.toFixed(2)}</p>
+                    <p class="text-sm text-gray-600">Se ha enviado un informe detallado a tu correo electrónico.</p>
+                `;
+            } else {
+                resultContainer.innerHTML = '<p>No se encontraron datos de tasación.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

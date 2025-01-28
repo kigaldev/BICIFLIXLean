@@ -1,5 +1,10 @@
 module.exports = {
   content: [
+    './index.html',
+    './tasacion_compra.html',
+    './src/**/*.{js,jsx,ts,tsx,vue}',
+  ],
+  content: [
     "./index.html",
     "./tasacion_compra.html",
     "./menu-toggle.js",
