@@ -7,341 +7,186 @@
     <meta name="description" content="Herramienta de tasación de bicicletas de segunda mano">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-background text-text min-h-screen">
-    <header class="site-header">
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+    <header class="bg-primary py-4">
         <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-4">
-                <div class="logo">
-                    <img src="logo-biciflix.png" alt="Biciflix Logo" class="h-12">
-                </div>
-
-                <div class="menu-toggle md:hidden" id="mobile-menu">
-                    <span class="block h-0.5 w-6 bg-text mb-1"></span>
-                    <span class="block h-0.5 w-6 bg-text mb-1"></span>
-                    <span class="block h-0.5 w-6 bg-text"></span>
-                </div>
-
-                <div class="nav-menu hidden md:block">
-                    <ul class="flex space-x-4">
-                        <li><a href="index.html" class="text-text hover:text-primary">Inicio</a></li>
-                        <li><a href="#tasacion" class="text-text hover:text-primary">Tasación</a></li>
-                        <li><a href="#comparador" class="text-text hover:text-primary">Comparador</a></li>
-                        <li><a href="#servicios" class="text-text hover:text-primary">Servicios</a></li>
-                    </ul>
-                </div>
-
-                <div class="user-actions flex space-x-4">
-                    <button class="btn-secondary">Iniciar Sesión</button>
-                    <button class="btn-primary">Registrarse</button>
-                </div>
-            </nav>
+            <h1 class="text-2xl font-bold text-white">Biciflix</h1>
         </div>
     </header>
 
     <main class="py-8">
-        <section class="tasacion-hero bg-secondary py-16 mb-8">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl font-bold mb-4">Tasación de Bicicletas de Segunda Mano</h1>
-                <p class="text-xl">Descubre el valor real de tu próxima bicicleta</p>
-            </div>
-        </section>
-
         <section class="container mx-auto px-4 max-w-2xl">
-            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6 text-gray-800">
-                <div class="form-section" id="marca-modelo-step">
-                    <h2 class="text-2xl font-bold mb-6">Información de la Bicicleta</h2>
-                    <div class="space-y-4">
-                        <div class="form-group">
-                            <label for="marca" class="block text-sm font-medium mb-2">Marca</label>
-                            <input type="text" id="marca" name="marca" required 
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
-                                   placeholder="Ingrese la marca de la bicicleta">
-                        </div>
-                        <div class="form-group">
-                            <label for="modelo" class="block text-sm font-medium mb-2">Modelo</label>
-                            <input type="text" id="modelo" name="modelo" required 
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
-                                   placeholder="Ej: Rockhopper, Domane, etc.">
-                        </div>
-                        <div class="form-group">
-                            <label for="year" class="block text-sm font-medium mb-2">Año</label>
-                            <select id="year" name="year" required 
-                                    class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
-                                <option value="">Selecciona año</option>
-                                <!-- Opciones de año se generarán con JavaScript -->
-                            </select>
-                        </div>
-                        <button type="button" class="next-step w-full bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition-colors">
-                            Siguiente
-                        </button>
+            <form id="tasacion-compra-form" class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-bold mb-6">Información de la Bicicleta</h2>
+                <div class="space-y-4">
+                    <div class="form-group">
+                        <label for="marca" class="block text-sm font-medium mb-2">Marca</label>
+                        <input list="marcas" id="marca" name="marca" required 
+                               class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                        <datalist id="marcas">
+                            <option value="Specialized">
+                            <option value="Trek">
+                            <option value="Giant">
+                            <option value="Cannondale">
+                            <option value="Orbea">
+                        </datalist>
                     </div>
-                </div>
-
-                <div class="form-section hidden" id="caracteristicas-step">
-                    <h2 class="text-2xl font-bold mb-6">Características Técnicas</h2>
-                    <div class="space-y-6">
-                        <div class="form-group">
-                            <label class="block text-sm font-medium mb-2">Sistema de Transmisión</label>
-                            <div class="flex space-x-4">
-                                <label class="flex items-center">
-                                    <input type="radio" id="mecanico" name="transmision" value="mecanico" required
-                                           class="mr-2 text-primary focus:ring-primary">
-                                    <span>Mecánico</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" id="electronico" name="transmision" value="electronico"
-                                           class="mr-2 text-primary focus:ring-primary">
-                                    <span>Electrónico</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="talla" class="block text-sm font-medium mb-2">Talla</label>
-                            <select id="talla" name="talla" required 
-                                    class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
-                                <option value="">Selecciona talla</option>
-                                <option value="xs">XS</option>
-                                <option value="s">S</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                                <option value="xl">XL</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="block text-sm font-medium mb-2">Intensidad de Uso</label>
-                            <div class="flex space-x-4">
-                                <label class="flex items-center">
-                                    <input type="radio" id="moderado" name="uso" value="moderado" required
-                                           class="mr-2 text-primary focus:ring-primary">
-                                    <span>Moderado</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" id="regular" name="uso" value="regular"
-                                           class="mr-2 text-primary focus:ring-primary">
-                                    <span>Regular</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" id="intensivo" name="uso" value="intensivo"
-                                           class="mr-2 text-primary focus:ring-primary">
-                                    <span>Intensivo</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="flex justify-between space-x-4">
-                            <button type="button" class="prev-step w-1/2 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors">
-                                Anterior
-                            </button>
-                            <button type="button" class="next-step w-1/2 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition-colors">
-                                Siguiente
-                            </button>
+                    <div class="form-group">
+                        <label for="modelo" class="block text-sm font-medium mb-2">Modelo</label>
+                        <input type="text" id="modelo" name="modelo" required 
+                               class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <div class="form-group">
+                        <label for="year" class="block text-sm font-medium mb-2">Año</label>
+                        <select id="year" name="year" required 
+                                class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <option value="">Selecciona año</option>
+                            <!-- Años dinámicos generados por JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="block text-sm font-medium mb-2">Sistema de Transmisión</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" id="mecanico" name="transmision" value="Mecánica" required
+                                       class="mr-2 text-primary focus:ring-primary">
+                                <span>Mecánico</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" id="electronico" name="transmision" value="Electrónica"
+                                       class="mr-2 text-primary focus:ring-primary">
+                                <span>Electrónico</span>
+                            </label>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-section hidden" id="contacto-step">
-                    <h2 class="text-2xl font-bold mb-6">Recibe tu Tasación</h2>
-                    <div class="space-y-4">
-                        <div class="form-group">
-                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" required 
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"
-                                   placeholder="Tu email para recibir el informe">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono" class="block text-sm font-medium mb-2">Teléfono (Opcional)</label>
-                            <input type="tel" id="telefono" name="telefono" placeholder="Tu número de contacto"
-                                   class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
-                        </div>
-                        <div class="flex justify-between space-x-4">
-                            <button type="button" class="prev-step w-1/2 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors">
-                                Anterior
-                            </button>
-                            <button type="submit" class="submit-tasacion w-1/2 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition-colors">
-                                Obtener Tasación
-                            </button>
+                    <div class="form-group">
+                        <label for="talla" class="block text-sm font-medium mb-2">Talla</label>
+                        <select id="talla" name="talla" required 
+                                class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                            <option value="">Selecciona talla</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="block text-sm font-medium mb-2">Intensidad de Uso</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" id="moderado" name="uso" value="Moderado" required
+                                       class="mr-2 text-primary focus:ring-primary">
+                                <span>Moderado</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" id="regular" name="uso" value="Regular"
+                                       class="mr-2 text-primary focus:ring-primary">
+                                <span>Regular</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" id="intensivo" name="uso" value="Intensivo"
+                                       class="mr-2 text-primary focus:ring-primary">
+                                <span>Intensivo</span>
+                            </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition-colors">
+                        Obtener Tasación
+                    </button>
                 </div>
             </form>
-            <div id="loading-spinner" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-                <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
-            </div>
         </section>
     </main>
 
-    <footer class="bg-secondary py-8 mt-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="footer-logo">
-                    <img src="logo-biciflix.png" alt="Biciflix Logo" class="h-12">
-                </div>
-                <nav class="footer-links">
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-text hover:text-primary">Sobre Nosotros</a></li>
-                        <li><a href="#" class="text-text hover:text-primary">Contacto</a></li>
-                        <li><a href="#" class="text-text hover:text-primary">Términos de Servicio</a></li>
-                        <li><a href="#" class="text-text hover:text-primary">Política de Privacidad</a></li>
-                    </ul>
-                </nav>
-                <div class="social-links flex space-x-4">
-                    <a href="#" class="text-text hover:text-primary">Instagram</a>
-                    <a href="#" class="text-text hover:text-primary">Facebook</a>
-                    <a href="#" class="text-text hover:text-primary">Twitter</a>
-                </div>
-                <p class="text-sm text-text">© 2025 Biciflix. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="loading-spinner" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+    </div>
 
-    <script src="menu-toggle.js"></script>
-    <script src="nav_tasacion_compra.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('tasacion-compra-form');
-            const fields = form.querySelectorAll('input, select');
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('tasacion-compra-form');
+        const fields = form.querySelectorAll('input, select');
+        console.log('Script cargado. Formulario encontrado:', form);
 
-            // Añadir validación a los campos
+        // Generar años dinámicamente
+        const yearSelect = document.getElementById('year');
+        const currentYear = new Date().getFullYear();
+        for (let year = currentYear; year >= currentYear - 20; year--) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+
+        function validateForm() {
+            let isValid = true;
             fields.forEach(field => {
-                field.addEventListener('blur', validateField);
-                field.addEventListener('input', validateField);
+                if (field.required && !field.value) {
+                    isValid = false;
+                    console.log('Campo inválido:', field.name);
+                }
             });
+            return isValid;
+        }
 
-            function validateField(e) {
-                const field = e.target;
-                const fieldName = field.getAttribute('name');
-                let errorMessage = '';
-                
-                switch(fieldName) {
-                    case 'marca':
-                        if (field.value.trim() === '') {
-                            errorMessage = 'Por favor, seleccione una marca.';
-                        }
-                        break;
-                    case 'modelo':
-                        if (field.value.trim() === '') {
-                            errorMessage = 'Por favor, ingrese el modelo.';
-                        }
-                        break;
-                    case 'year':
-                        const year = parseInt(field.value);
-                        if (isNaN(year) || year < 1900 || year > new Date().getFullYear()) {
-                            errorMessage = 'Por favor, ingrese un año válido.';
-                        }
-                        break;
-                    case 'email':
-                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (!emailRegex.test(field.value)) {
-                            errorMessage = 'Por favor, ingrese un email válido.';
-                        }
-                        break;
-                }
-                setFieldError(field, errorMessage);
-            }
+        function showSpinner() {
+            document.getElementById('loading-spinner').classList.add('show');
+        }
 
-            function setFieldError(field, message) {
-                const errorElement = field.nextElementSibling;
-                if (errorElement && errorElement.classList.contains('error-message')) {
-                    errorElement.textContent = message;
-                } else if (message) {
-                    const newError = document.createElement('p');
-                    newError.classList.add('error-message', 'text-red-500', 'text-sm', 'mt-1');
-                    newError.textContent = message;
-                    field.parentNode.insertBefore(newError, field.nextSibling);
-                }
-                field.classList.toggle('border-red-500', message !== '');
-            }
+        function hideSpinner() {
+            document.getElementById('loading-spinner').classList.add('hidden');
+        }
 
-            function validateForm(e) {
-                let isValid = true;
-                fields.forEach(field => {
-                    validateField({target: field});
-                    if (field.nextElementSibling && field.nextElementSibling.classList.contains('error-message')) {
-                        isValid = false;
-                    }
-                });
-                if (!isValid) {
-                    e.preventDefault();
-                }
-            }
-
-            function showSpinner() {
-                 document.getElementById('loading-spinner').classList.remove('hidden');
-            }
-
-            function hideSpinner() {
-                 document.getElementById('loading-spinner').classList.add('hidden');
-            }
-
-            form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (validateForm()) {
-        showSpinner();
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        
-        fetch('http://localhost:5001/tasacion', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-    hideSpinner();
-    localStorage.setItem('tasacionResult', JSON.stringify(result));
-    window.location.href = 'resultado_tasacion.html';
-})
-        .catch(error => {
-            hideSpinner();
-            console.error('Error:', error);
-            alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
-        });
-    }
-});            
-
-            // Agregar validación antes del envío del formulario
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validar el formulario antes de enviar
-                validateForm(e);
-
-                // Si hay errores de validación, no continuar con el envío
-                const hasErrors = form.querySelectorAll('.error-message').length > 0;
-                if (hasErrors) return;
-
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Formulario enviado');
+            if (validateForm()) {
+                console.log('Formulario validado');
+                showSpinner();
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
+                console.log('Datos del formulario:', data);
                 
-                fetch('http://localhost:5001/tasacion', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                    alert(`Tasación completada. Precio estimado: $${result.precio_estimado}`);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
-                    console.log('Respuesta del servidor:', error.response);
-                });
-
-                // Generar opciones de año dinamicamente
-                const yearSelect = document.getElementById('year');
-                const currentYear = new Date().getFullYear();
-                for (let year = currentYear; year >= 1900; year--) {
-                    const option = document.createElement('option');
-                    option.value = year;
-                    option.textContent = year;
-                    yearSelect.appendChild(option);
-                }
-            });
-        </script>
-    </body>
-    </html>
+                setTimeout(() => {
+                    console.log('Enviando solicitud al servidor...');
+                    fetch('http://localhost:5001/tasacion', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        console.log('Respuesta recibida:', response);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(result => {
+                        console.log('Resultado de la tasación:', result);
+                        hideSpinner();
+                        localStorage.setItem('tasacionResult', JSON.stringify(result));
+                        window.location.href = 'resultado_tasacion.html';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        hideSpinner();
+                        alert('Hubo un error al procesar la tasación. Por favor, intenta de nuevo.');
+                    });
+                }, 3000); // 3 segundos de retraso
+            } else {
+                console.log('Validación del formulario fallida');
+                alert('Por favor, complete todos los campos requeridos.');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

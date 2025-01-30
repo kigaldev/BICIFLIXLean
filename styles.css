@@ -1034,3 +1034,11 @@ body {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+#loading-spinner {
+  display: none;
+}
+
+#loading-spinner.show {
+  display: flex;
+}

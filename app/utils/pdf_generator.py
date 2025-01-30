@@ -1,8 +1,9 @@
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib import colors
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from datetime import datetime
 
 def generar_informe_tasacion(datos_tasacion):
     pdf_path = f"informes/tasacion_{datos_tasacion['id']}.pdf"
@@ -11,18 +12,21 @@ def generar_informe_tasacion(datos_tasacion):
     elementos = []
     estilos = getSampleStyleSheet()
     
-    # Título
-    titulo = Paragraph("Informe de Tasación BiciFlix", estilos['Title'])
-    elementos.append(titulo)
+    elementos.append(Paragraph("Informe de Tasación BiciFlix", estilos['Title']))
+    elementos.append(Spacer(1, 0.25*inch))
     
-    # Datos de la tasación
     datos_tabla = [
-        ['Campo', 'Valor'],
         ['Marca', datos_tasacion['marca']],
         ['Modelo', datos_tasacion['modelo']],
         ['Año', str(datos_tasacion['anio'])],
         ['Precio Estimado', f"${datos_tasacion['precio_estimado']:.2f}"]
     ]
+    
+    # Añadir transmisión y talla si están disponibles
+    if 'transmision' in datos_tasacion:
+        datos_tabla.append(['Transmisión', datos_tasacion['transmision']])
+    if 'talla' in datos_tasacion:
+        datos_tabla.append(['Talla', datos_tasacion['talla']])
     
     tabla = Table(datos_tabla)
     tabla.setStyle(TableStyle([
